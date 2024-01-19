@@ -2,11 +2,19 @@
 {
     public partial class App : Application
     {
-        public App()
+        //variable de Usuariorepository
+        public static UsuarioRepository usuarioRepo {  get; set; }
+        
+
+        public App(UsuarioRepository usuarioRepository )
         {
             InitializeComponent();
 
-            MainPage = new AppShell();
+            MainPage = new NavigationPage (new Views.Login(usuarioRepository));
+            usuarioRepo = usuarioRepository;
         }
+
+       
+
     }
 }

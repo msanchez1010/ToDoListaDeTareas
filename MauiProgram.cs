@@ -15,6 +15,11 @@ namespace ToDoListaDeTareas
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
 
+            //llamado a la ruta que voy a utilizar
+            string dbPath = FileAccessHelper.GetLocalFilePath("usuario.db3");
+            //compile el cambio en el dispositivo, ejecucion del metodo
+            builder.Services.AddSingleton<UsuarioRepository>(s=> ActivatorUtilities.CreateInstance<UsuarioRepository>(s, dbPath));
+
 #if DEBUG
     		builder.Logging.AddDebug();
 #endif

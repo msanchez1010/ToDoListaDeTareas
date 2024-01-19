@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ToDoListaDeTareas.Views.Login"
+             Title="Login">
+    <VerticalStackLayout Padding="45" Spacing="5">
+        <Label 
+            Text="Sistema de Tareas Uisrael"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center"
+            TextColor="Red"
+            FontSize="20"/>
+
+        <Label 
+            Text="Bienvenido/a"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center"
+            TextColor="blue"
+            FontSize="17"/>
+
+        <Image Source="https://cdn-icons-png.flaticon.com/512/1345/1345063.png" 
+               HeightRequest="100" 
+               WidthRequest="100" 
+               HorizontalOptions="CenterAndExpand" 
+               Margin="0,50,0,20"/>
+        
+        <Entry x:Name="txtCorreo"
+               Placeholder="Correo"  
+               Margin="0,0,0,10"/>
+        
+        <Entry x:Name="txtContraseña"
+               Placeholder="Contraseña"  
+               IsPassword="True" 
+               Margin="0,0,0,20"/>
+        
+        <Button x:Name="btnInicioSesion"
+                Text="Iniciar Sesión"
+                Clicked="btnInicioSesion_Clicked"
+                BackgroundColor="#3498db" 
+                TextColor="White"/>
+
+        <Label Text="¿No tienes una cuenta? Regístrate" 
+               TextColor="#3498db" 
+               HorizontalTextAlignment="Center" 
+               Margin="0,20,0,0"/>
+        
+        <Button x:Name="btnRegistro"
+                Text="Registrate"
+                Clicked="btnRegistro_Clicked"
+                BackgroundColor="#2ecc71" 
+                TextColor="White" />
+
+    </VerticalStackLayout>
+</ContentPage>

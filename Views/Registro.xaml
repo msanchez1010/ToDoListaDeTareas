@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ToDoListaDeTareas.Views.Registro"
+             Title="Registro">
+    <VerticalStackLayout Padding="45" Spacing="3">
+        
+        <Label 
+            Text="Registra tus datos"
+            TextColor="blue"
+            FontSize="18"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center"/>
+
+        <Image Source="https://cdn-icons-png.flaticon.com/512/2721/2721299.png"
+               HeightRequest="100" 
+               WidthRequest="100" 
+               HorizontalOptions="CenterAndExpand" 
+               Margin="0,50,0,20"/>
+
+        <Entry x:Name="txtNombre"
+               Placeholder="Nombre Completo"  
+               Margin="0,0,0,10"/>
+        <Label x:Name="lblNombreMensaje" 
+               Text="" TextColor="Red" />
+
+        <Entry x:Name="txtCorreo"
+               Placeholder="Correo Electrónico"
+               Margin="0,0,0,10"/>
+        <Label x:Name="lblCorreoMensaje" 
+               Text="" TextColor="Red" />
+
+        <Entry x:Name="txtPassword"
+               Placeholder="Contraseña"  
+               IsPassword="True" 
+               Margin="0,0,0,20"/>
+        <Label x:Name="lblContraseñaMensaje" 
+               Text="" TextColor="Red" />
+
+        <Button x:Name="btnRegistrarse"
+                Text="Registrarse"
+                Clicked="btnRegistrarse_Clicked"
+                BackgroundColor="#2ecc71" 
+                TextColor="White" />
+
+        <Label 
+            Text="¿Ya tienes una cuenta? Inicia sesión" 
+            HorizontalTextAlignment="Center" 
+            Margin="0,20,0,0"/>
+
+        <Button x:Name="btnInicioSesion"
+                Text="Iniciar Sesión"
+                Clicked="btnInicioSesion_Clicked"      
+                BackgroundColor="#3498db" 
+                TextColor="White"/>
+        
+    </VerticalStackLayout>
+</ContentPage>
