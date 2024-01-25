@@ -54,6 +54,24 @@ namespace ToDoListaDeTareas
             }
         }
 
-        // Otros métodos 
+        public List<Tarea> GetTareasByUsuarioId(int usuarioId)
+        {
+            List<Tarea> tareas = new List<Tarea>();
+
+            try
+            {
+                Init();
+
+                // Consulta para obtener las tareas asociadas al usuarioId
+                tareas = conn.Table<Tarea>().Where(t => t.UsuarioId == usuarioId).ToList();
+            }
+            catch (Exception ex)
+            {
+                StatusMessage = string.Format("Error al obtener tareas: {0}", ex.Message);
+            }
+
+            return tareas;
+        }
+        
     }
 }

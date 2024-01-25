@@ -9,7 +9,7 @@ namespace ToDoListaDeTareas.Views
     {
         private TareaRepository tareaRepository;
 
-        public NuevaTarea(TareaRepository tareaRepository)
+        public NuevaTarea(TareaRepository tareaRepository, VistaTareas vistaTareas)
         {
             InitializeComponent();
             this.tareaRepository = tareaRepository;
@@ -17,7 +17,7 @@ namespace ToDoListaDeTareas.Views
             // Agrega los elementos de la interfaz de usuario necesarios para ingresar los detalles de la nueva tarea
         }
 
-        private void btnGuardar_Clicked(object sender, EventArgs e)
+        private void btnGuarda_Clicked(object sender, EventArgs e)
         {
             // Obtén los valores ingresados por el usuario
             string nombre = txtNombre.Text;
@@ -35,11 +35,6 @@ namespace ToDoListaDeTareas.Views
             // Mostrar mensaje de éxito y regresar a la vista de tareas
             DisplayAlert("Éxito", "Tarea creada correctamente", "OK");
             Navigation.PopAsync();
-        }
-
-        private void btnGuarda_Clicked(object sender, EventArgs e)
-        {
-
         }
     }
 }

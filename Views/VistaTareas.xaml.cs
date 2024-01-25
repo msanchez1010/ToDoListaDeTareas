@@ -1,24 +1,59 @@
-namespace ToDoListaDeTareas.Views;
+using System;
+using System.Collections.Generic;
+using Microsoft.Maui.Controls;
+using ToDoListaDeTareas.Models;
 
-public partial class VistaTareas : ContentPage
+namespace ToDoListaDeTareas.Views
 {
-	private TareaRepository tareaRepository;
-	public VistaTareas()
-	{
-		InitializeComponent();
-		this.tareaRepository = new TareaRepository(App.usuarioRepo.GetDbPath());
-
-        Button btnNuevaTarea = new Button
-        {
-            Text = "Nueva Tarea",
-            BackgroundColor = Color.FromHex("#2ecc71"),  // Verde
-            TextColor = Color.FromHex("#FFFFFF")
-        };
-
-    }
-
-    private async void btnNuevaTarea_Clicked(object sender, EventArgs e)
+    public partial class VistaTareas : ContentPage
     {
-        await Navigation.PushAsync(new NuevaTarea(tareaRepository));
+        private TareaRepository tareaRepository;
+    
+        private ListView listViewTareas;
+        private Button btnNuevaTarea;
+
+        public VistaTareas(TareaRepository tareaRepository)
+        {
+            InitializeComponent();
+            this.tareaRepository = tareaRepository;
+
+            listViewTareas = new ListView();
+            btnNuevaTarea = new Button
+            {
+            Text = "Nueva Tarea",
+            BackgroundColor = Color.FromHex("#2ecc71"),
+            TextColor = Color.FromHex("#FFFFFF")
+            };
+
+            btnNuevaTarea.Clicked += btnNuevaTarea_Clicked;
+
+            mainstackLayout.Children.Add(listViewTareas);
+            mainstackLayout.Children.Add(btnNuevaTarea);
+
+            MostrarTareas();
+        }
+
+        private void MostrarTareas()
+        {
+            int usuarioId = App.usuarioRepo.GetUsuarioIdActual();
+            List<Tarea> tareas = tareaRepository.GetTareasByUsuarioId(usuarioId);
+            listViewTareas.ItemsSource = tareas;
+
+        
+            listViewTareas.ItemTapped += (sender, e) =>
+            {
+                
+            };
+        }
+
+        private async void btnNuevaTarea_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new NuevaTarea(tareaRepository, this));
+        }
+
+        public void ActualizarListaTareas()
+        {
+            MostrarTareas();
+        }
     }
 }

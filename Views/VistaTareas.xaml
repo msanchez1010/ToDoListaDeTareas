@@ -10,14 +10,27 @@
                HorizontalOptions="Center" 
                VerticalOptions="StartAndExpand" />
 
-        <!-- Aquí puedes mostrar la lista de tareas. Puedes usar un ListView o cualquier otro control según tus necesidades. -->
+        <StackLayout x:Name="mainstackLayout" Spacing="10">
 
-        <Button x:Name="btnNuevaTarea"
-                Text="Nueva Tarea"
-                Clicked="btnNuevaTarea_Clicked"
-                BackgroundColor="#2ecc71" 
-                TextColor="White" />
+            <ListView x:Name="mainlistViewTareas">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <!-- Utiliza un Frame para envolver los elementos de cada tarea -->
+                        <Frame CornerRadius="5" BorderColor="LightGray" Margin="5">
+                            <StackLayout Padding="10">
+                                <!-- Puedes personalizar los elementos que deseas mostrar para cada tarea -->
+                                <Label Text="{Binding Nombre}" FontSize="18" FontAttributes="Bold" />
+                                <Label Text="{Binding Descripcion}" FontSize="14" />
+                                <!-- Agrega más elementos según sea necesario -->
+                            </StackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
 
+            
+
+        </StackLayout>
 
     </VerticalStackLayout>
 </ContentPage>

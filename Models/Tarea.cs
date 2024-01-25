@@ -12,7 +12,7 @@ namespace ToDoListaDeTareas.Models
     public class Tarea
     {
         [SQLite.PrimaryKey, SQLite.AutoIncrement]
-        public int Id { get; set; }
+        public int Tarea_Id { get; set; }
 
         [SQLite.MaxLength(50), SQLite.NotNull]
         public string Nombre { get; set; }
@@ -30,5 +30,11 @@ namespace ToDoListaDeTareas.Models
 
         [SQLite.Ignore]
         public Usuario Usuario { get; set; }
+
+        public override string ToString()
+        {
+            return $"{Nombre} - {Descripcion}"; // O cualquier formato que desees mostrar
+        }
     }
+
 }
