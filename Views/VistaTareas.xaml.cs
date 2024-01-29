@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using Microsoft.Maui.Controls;
 using ToDoListaDeTareas.Models;
@@ -8,7 +9,6 @@ namespace ToDoListaDeTareas.Views
     public partial class VistaTareas : ContentPage
     {
         private TareaRepository tareaRepository;
-    
         private ListView listViewTareas;
         private Button btnNuevaTarea;
 
@@ -28,21 +28,28 @@ namespace ToDoListaDeTareas.Views
             btnNuevaTarea.Clicked += btnNuevaTarea_Clicked;
 
             mainstackLayout.Children.Add(listViewTareas);
+            mainstackLayout.VerticalOptions = LayoutOptions.FillAndExpand;
             mainstackLayout.Children.Add(btnNuevaTarea);
 
             MostrarTareas();
         }
 
-        private void MostrarTareas()
+        private async void MostrarTareas()
         {
             int usuarioId = App.usuarioRepo.GetUsuarioIdActual();
             List<Tarea> tareas = tareaRepository.GetTareasByUsuarioId(usuarioId);
+            listViewTareas.ItemsSource = null;
             listViewTareas.ItemsSource = tareas;
 
         
-            listViewTareas.ItemTapped += (sender, e) =>
+            listViewTareas.ItemTapped += async (sender, e) =>
             {
-                
+                Tarea tareaSeleccionada = e.Item as Tarea;
+                if (tareaSeleccionada != null)
+                {
+                    // Navega a la vista de detalle con la tarea seleccionada
+                    await Navigation.PushAsync(new DetalleTarea(tareaSeleccionada, tareaRepository, this));
+                }
             };
         }
 
@@ -51,9 +58,28 @@ namespace ToDoListaDeTareas.Views
             await Navigation.PushAsync(new NuevaTarea(tareaRepository, this));
         }
 
-        public void ActualizarListaTareas()
+        private async void listViewTareas_ItemTapped(object sender, ItemTappedEventArgs e)
         {
-            MostrarTareas();
+            Tarea tareaSeleccionada = e.Item as Tarea;
+            if (tareaSeleccionada != null)
+            {
+                // Navegar a la vista de detalle con la tarea seleccionada
+                await Navigation.PushAsync(new DetalleTarea(tareaSeleccionada, tareaRepository, this));
+            }
         }
+
+        public async void ActualizarListaTareas()
+        {
+            int usuarioId = App.usuarioRepo.GetUsuarioIdActual();
+            List<Tarea> tareas = tareaRepository.GetTareasByUsuarioId(usuarioId);
+            listViewTareas.ItemsSource = null;
+            listViewTareas.ItemsSource = tareas;
+
+            //Agregar una pequeña espera para permitir que la lista se actualice antes de continuar
+            await Task.Delay(100);
+        }
+        
+
+        
     }
 }

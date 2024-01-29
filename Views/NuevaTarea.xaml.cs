@@ -8,11 +8,13 @@ namespace ToDoListaDeTareas.Views
     public partial class NuevaTarea : ContentPage
     {
         private TareaRepository tareaRepository;
+        private VistaTareas vistaTareas;
 
         public NuevaTarea(TareaRepository tareaRepository, VistaTareas vistaTareas)
         {
             InitializeComponent();
             this.tareaRepository = tareaRepository;
+            this.vistaTareas = vistaTareas;
 
             // Agrega los elementos de la interfaz de usuario necesarios para ingresar los detalles de la nueva tarea
         }
@@ -31,6 +33,8 @@ namespace ToDoListaDeTareas.Views
 
             // Agregar la nueva tarea
             tareaRepository.AddNewTarea(nombre, descripcion, fechaEjecucion, estado, prioridad, usuarioId);
+
+            vistaTareas.ActualizarListaTareas();
 
             // Mostrar mensaje de éxito y regresar a la vista de tareas
             DisplayAlert("Éxito", "Tarea creada correctamente", "OK");

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ToDoListaDeTareas.Views.DetalleTarea"
+             Title="DetalleTarea">
+    
+    <StackLayout Padding="20" Spacing="10">
+
+        <Entry x:Name="entryNombre" Text="{Binding Nombre}" FontSize="20" FontAttributes="Bold" IsEnabled="False" />
+        <Entry x:Name="entryDescripcion" Text="{Binding Descripcion}" FontSize="16" IsEnabled="False" />
+        <Entry x:Name="entryFechaEjecucion" Text="{Binding FechaEjecucion, StringFormat='Fecha de Ejecución: {0:d}'}" IsEnabled="False" />
+        <Entry x:Name="entryEstado" Text="{Binding Estado}" IsEnabled="False" />
+        <Entry x:Name="entryPrioridad" Text="{Binding Prioridad}" IsEnabled="False" />
+
+        <StackLayout Orientation="Horizontal" Spacing="10">
+            <Button 
+                x:Name="btnEditarTarea"
+                Text="Editar"
+                Clicked="btnEditarTarea_Clicked"/>
+
+            <Button 
+                x:Name="btnEliminarTarea"
+                Text="Eliminar"
+                Clicked="btnEliminarTarea_Clicked"/>
+        </StackLayout>
+
+        <StackLayout Orientation="Horizontal" Spacing="10">
+            <Button 
+                x:Name="btnCancelarTarea"
+                Text="Cancelar"
+                Clicked="btnCancelarTarea_Clicked"/>
+
+            <Button 
+                x:Name="btnGuardarTarea"
+                Text="Guardar"
+                Clicked="btnGuardarTarea_Clicked"/>
+        </StackLayout>
+
+    </StackLayout>
+</ContentPage>

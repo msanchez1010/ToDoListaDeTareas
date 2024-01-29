@@ -72,6 +72,30 @@ namespace ToDoListaDeTareas
 
             return tareas;
         }
-        
+
+        //metodo eliminar tarea
+        public void EliminarTarea(Tarea tarea)
+        {
+            try
+            {
+                Init();
+                conn.Delete(tarea);
+                StatusMessage = string.Format("Tarea eliminada: {0}", tarea.Nombre);
+            }
+            catch (Exception ex)
+            {
+                StatusMessage = string.Format("Error al eliminar tarea: {0}", ex.Message);
+            }
+        }
+
+        //metodo actualizar tarea
+        public void ActualizarTarea(Tarea tarea)
+        {
+            Init();
+
+            conn.Update(tarea);
+            StatusMessage = string.Format("Tarea actualizada: {0}", tarea.Nombre);
+        }
+
     }
 }

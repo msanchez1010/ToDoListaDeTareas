@@ -8,7 +8,6 @@ public partial class Login : ContentPage
 {
     private UsuarioRepository usuarioRepository;
 
-
     // Inyecta UsuarioRepository a través del constructor
     public Login(UsuarioRepository usuarioRepository)
     {
