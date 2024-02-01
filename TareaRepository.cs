@@ -96,6 +96,5 @@ namespace ToDoListaDeTareas
             conn.Update(tarea);
             StatusMessage = string.Format("Tarea actualizada: {0}", tarea.Nombre);
         }
-
     }
 }
